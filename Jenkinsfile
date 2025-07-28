@@ -46,6 +46,7 @@ pipeline {
             sh '''
               aws eks update-kubeconfig --name $EKS_CLUSTER
               kubectl apply -f ${APP_NAME}/${APP_NAME}-deployment.yaml -n $K8S_NAMESPACE
+              kubectl apply -f apps-ingress.yaml
               kubectl rollout restart deployment $APP_NAME
             '''
           }
