@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apps-ingress
+  namespace: default
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/group.name: apps-group
+    kubernetes.io/ingress.class: alb
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /web1
+            pathType: Prefix
+            backend:
+              service:
+                name: web1-service
+                port:
+                  number: 80
+          - path: /web2
+            pathType: Prefix
+            backend:
+              service:
+                name: web2-service
+                port:
+                  number: 80
+          - path: /web3
+            pathType: Prefix
+            backend:
+              service:
+                name: web3-service
+                port:
+                  number: 80
