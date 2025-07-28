@@ -9,6 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/backend-protocol: HTTP
     alb.ingress.kubernetes.io/group.name: apps-group
+    alb.ingress.kubernetes.io/healthcheck-path: /web2
     kubernetes.io/ingress.class: alb
 spec:
   rules:
